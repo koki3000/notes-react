@@ -14,23 +14,20 @@ export default function Main()
          .catch((err) => console.log(err.message));
    }, []);
 
-   function toAdd() {
-      return navigate('/add')
-   }
-   
    var myNotes = notes.map(note => {
       return (
-      <div key={note.id}>
-         <h1>{note.id}</h1>
-         <div>{note.content}</div>
-      </div>        
+         <div key={note.id}>
+            <h1>{note.id}</h1>
+            <div>{note.content}</div>
+            <button onClick={() =>  navigate(`/update/${note.id}/`)}>Update</button>
+         </div>
       )
    })
 
     return (
         <div>
             {myNotes}
-            <button onClick={toAdd}>Add note</button>
+            <button onClick={() => navigate('/add')}>Add note</button>
         </div>
         
     )
