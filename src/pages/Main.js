@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Main() 
 {
    const [notes, setNotes] = useState([])
+   const navigate = useNavigate()
 
    useEffect(() => {
       fetch('http://127.0.0.1:8000/')
@@ -11,6 +13,10 @@ export default function Main()
          .then((data) => setNotes(data))
          .catch((err) => console.log(err.message));
    }, []);
+
+   function toAdd() {
+      return navigate('/add')
+   }
    
    var myNotes = notes.map(note => {
       return (
@@ -24,6 +30,7 @@ export default function Main()
     return (
         <div>
             {myNotes}
+            <button onClick={toAdd}>Add note</button>
         </div>
         
     )
