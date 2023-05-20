@@ -14,12 +14,31 @@ export default function Main()
          .catch((err) => console.log(err.message));
    }, []);
 
+   function deleteNote(id) {
+      fetch(`http://127.0.0.1:8000/note/delete/${id}/`, {
+            method: 'DELETE'
+      })
+       .then(response => {
+         if (response.status === 200) {
+            setNotes(
+                  notes.filter((notes) => {
+                     return notes.id !== id;
+                  })
+               )
+         } 
+         else {
+            return;
+         }
+      })
+   }
+
    var myNotes = notes.map(note => {
       return (
          <div key={note.id}>
             <h1>{note.id}</h1>
             <div>{note.content}</div>
             <button onClick={() =>  navigate(`/update/${note.id}/`)}>Update</button>
+            <button onClick={() =>  deleteNote(note.id)}>Delete</button>
          </div>
       )
    })
