@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #B3CDD6;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .note {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 3px solid #13B7AE;
+  }
+  
+  .note:nth-child(even) {
+    background-color: #13B7AE;
+  }
+  
+  .note h2 {
+    color: #13B7AE;
+  }
+
+  .note:nth-child(even) h2 {
+    color: white;
+  }
+  
+  .note p {
+    color: #13B7AE;
+    line-height: 1.5;
+  }
+
+  .note:nth-child(even) p {
+    color: white;
+  }

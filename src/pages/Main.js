@@ -34,9 +34,9 @@ export default function Main()
 
    var myNotes = notes.map(note => {
       return (
-         <div key={note.id}>
-            <h1>{note.id}</h1>
-            <div>{note.content}</div>
+         <div key={note.id}  className='note'>
+            <h2>{note.id}</h2>
+            <p>{note.content}</p>
             <button onClick={() =>  navigate(`/update/${note.id}/`)}>Update</button>
             <button onClick={() =>  deleteNote(note.id)}>Delete</button>
          </div>

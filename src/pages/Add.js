@@ -10,38 +10,34 @@ export default function Add() {
         setNote(event.target.value)
     }
 
-    const addNote = async () => {
+    async function handleSubmit(event) {
+        event.preventDefault()
         await fetch('http://127.0.0.1:8000/note/add/', {
-           method: 'POST',
-           body: JSON.stringify({
-              content: note,
-           }),
-           headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-           },
-        })
-           .then((response) => response.json())
-     };
-
-    function handleSubmit () {
-        addNote()
-        return navigate("/")
+            method: 'POST',
+            body: JSON.stringify({
+                   content: note,
+                }),
+            headers: {
+               'Content-type': 'application/json; charset=UTF-8',
+            },
+         })
+        navigate("/")
     }
-
     return (
-        <form onSubmit={handleSubmit}>
-            <div> Add note </div>
-            <input 
-                type='textfield'
-                placeholder='Your note'
-                onChange={handleChange}
-                value={note}
-            />
-            <div>
-                <button type='submit'> Add </button>
-            </div>
-            
-        </form>
-    
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div> Add note </div>
+                <textarea 
+                    placeholder='Your note'
+                    onChange={handleChange}
+                    value={note}>
+                </textarea>
+                
+                <div>
+                    <button type='submit'> Add </button>
+                </div>            
+            </form>
+        </div>
+        
         )
 }

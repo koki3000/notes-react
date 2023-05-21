@@ -8,13 +8,17 @@ import Update from './pages/Update';
 function App() {
   
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />}/>
-        <Route path="/add" element={<Add />} />
-        <Route path="/update/:id/" element={<Update />} />
-      </Routes>
-    </BrowserRouter>
+    <div className='container'>
+      <h1>My Notes</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />}/>
+          <Route path="/add" element={<Add />} />
+          <Route path="/update/:id/" element={<Update />} />
+        </Routes>
+      </BrowserRouter>  
+    </div>
+        
   );
 }
 

@@ -11,14 +11,15 @@ export default function Update({ route, navigation }) {
          .then((response) => response.json())
          .then((data) => setNote(data.content))
          .catch((err) => console.log(err.message));
-    }, [])
+    }, [id])
 
     function handleChange(event) {
         setNote(event.target.value)
     }
 
-    function handleSubmit() {
-        fetch(`http://127.0.0.1:8000/note/update/${id}/`, {
+    async function handleSubmit(event) {
+        event.preventDefault()
+        await fetch(`http://127.0.0.1:8000/note/update/${id}/`, {
             method: 'PUT',
             body: JSON.stringify({
                 content: note,
@@ -27,24 +28,20 @@ export default function Update({ route, navigation }) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-         .then((response) => response.json())
-
-        return navigate("/")
+        navigate("/")
     }
 
-    console.log(note)
     return (
         <form onSubmit={handleSubmit}>
             <div> Update note </div>
-            <input 
+            <textarea 
                 type='textfield'
                 onChange={handleChange}
-                value={note}
-            />
+                value={note}>
+            </textarea>
             <div>
                 <button type='submit'> Update </button>
-            </div>
-            
+            </div>            
         </form>
 
     )
