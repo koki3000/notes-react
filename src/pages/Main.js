@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DeleteButton from '../components/DeleteButton';
 
 
 export default function Main() 
@@ -12,33 +13,22 @@ export default function Main()
          .then((response) => response.json())
          .then((data) => setNotes(data))
          .catch((err) => console.log(err.message));
-   }, []);
 
-   function deleteNote(id) {
-      fetch(`http://127.0.0.1:8000/note/delete/${id}/`, {
-            method: 'DELETE'
-      })
-       .then(response => {
-         if (response.status === 200) {
-            setNotes(
-                  notes.filter((notes) => {
-                     return notes.id !== id;
-                  })
-               )
-         } 
-         else {
-            return;
-         }
-      })
-   }
+   }, []);
 
    var myNotes = notes.map(note => {
       return (
          <div key={note.id}  className='note'>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
+            <div onClick={() => navigate(`/note/${note.id}/`)}>
+               <h2>{note.title}</h2>
+               <p>{note.content}</p>
+            </div>            
             <button onClick={() =>  navigate(`/update/${note.id}/`)}>Update</button>
-            <button onClick={() =>  deleteNote(note.id)}>Delete</button>
+            <DeleteButton 
+            id={note.id}
+            allNotes={notes}
+            removeNote={setNotes}
+            navigation={() => navigate('/')}/>
          </div>
       )
    })

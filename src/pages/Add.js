@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Add() {
 
-    const [note, setNote] = useState({})
+    const [note, setNote] = useState({title: "", content: ""})
     const navigate = useNavigate()
 
     function handleChange(event) {
