@@ -2,19 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams  } from 'react-router-dom';
 
 export default function Update({ route, navigation }) {
-    const { id } = useParams();
-    const [note, setNote] = useState("")
+    const { id } = useParams()
+    const [note, setNote] = useState({})
     const navigate = useNavigate()
 
     useEffect( () => {
         fetch(`http://127.0.0.1:8000/note/${id}/`)
          .then((response) => response.json())
-         .then((data) => setNote(data.content))
+         .then((data) => setNote(data))
          .catch((err) => console.log(err.message));
     }, [id])
 
     function handleChange(event) {
-        setNote(event.target.value)
+        const {name, value} = event.target
+        setNote(prevNote => ({
+            ...prevNote,
+            [name]: value
+        }))
     }
 
     async function handleSubmit(event) {
@@ -22,7 +26,8 @@ export default function Update({ route, navigation }) {
         await fetch(`http://127.0.0.1:8000/note/update/${id}/`, {
             method: 'PUT',
             body: JSON.stringify({
-                content: note,
+                title: note.title,
+                content: note.content
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -32,17 +37,25 @@ export default function Update({ route, navigation }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div> Update note </div>
-            <textarea 
-                type='textfield'
-                onChange={handleChange}
-                value={note}>
-            </textarea>
-            <div>
-                <button type='submit'> Update </button>
-            </div>            
-        </form>
-
+        <div className='form-container'>
+            <h2> Update note </h2>
+            <form onSubmit={handleSubmit}>                
+                <input                     
+                     placeholder='Title'
+                     onChange={handleChange}
+                     name='title'
+                     value={note.title}>
+                </input>
+                <textarea 
+                    placeholder='Your note'
+                    onChange={handleChange}
+                    name='content'
+                    value={note.content}>
+                </textarea>                
+                <div>
+                    <button type='submit'> Update </button>
+                </div>            
+            </form>
+        </div>
     )
 }

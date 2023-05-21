@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function Add() {
 
-    const [note, setNote] = useState("")
+    const [note, setNote] = useState({})
     const navigate = useNavigate()
 
     function handleChange(event) {
-        setNote(event.target.value)
+        const {name, value} = event.target
+        setNote(prevNote => ({
+            ...prevNote,
+            [name]: value
+        })
+        )
     }
 
     async function handleSubmit(event) {
@@ -15,7 +20,8 @@ export default function Add() {
         await fetch('http://127.0.0.1:8000/note/add/', {
             method: 'POST',
             body: JSON.stringify({
-                   content: note,
+                    title: note.title,
+                    content: note.content
                 }),
             headers: {
                'Content-type': 'application/json; charset=UTF-8',
@@ -24,15 +30,21 @@ export default function Add() {
         navigate("/")
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div> Add note </div>
+        <div className='form-container'>
+            <h2> Add note </h2>
+            <form onSubmit={handleSubmit}>                
+                <input                     
+                     placeholder='Title'
+                     onChange={handleChange}
+                     name='title'
+                     value={note.title}>
+                </input>
                 <textarea 
                     placeholder='Your note'
                     onChange={handleChange}
-                    value={note}>
-                </textarea>
-                
+                    name='content'
+                    value={note.content}>
+                </textarea>                
                 <div>
                     <button type='submit'> Add </button>
                 </div>            
