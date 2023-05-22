@@ -68,3 +68,61 @@ h1 {
   padding: 10px;
   cursor: pointer;
 }
+
+.textfield {
+  padding: 10px;
+  border: none;
+  /* border-radius: 4px; */
+  font-size: 14px;
+  color: #333;
+  width: 200px;
+}
+.title {
+  font-size: 18px;
+  /* border-radius: 4px; */
+}
+
+.textfield:focus {
+  outline: none;
+}
+
+.textfield::placeholder {
+  color: #999;
+}
+
+textarea.note {
+  background-color: #13B7AE;
+  color: white;
+  padding: 16px 12px;
+  width: 100%;
+  height: 40vh;
+  scrollbar-width: none;
+  display: block;
+  font-size: 20px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+input.note  {
+  background-color: white;
+  color: #13B7AE;
+  padding: 16px 12px;
+  width: 100%;
+  resize: none;
+  scrollbar-width: none;
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+textarea.note:active,
+textarea.note:focus,
+input.note:active,
+input.note:focus {
+  outline: none;
+}
+
+textarea.note::-webkit-scrollbar {
+  display: none;
+}
