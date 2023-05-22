@@ -3,7 +3,7 @@ export default function DeleteButton (props) {
 
     async function handleClick(event) {
         event.preventDefault()
-        await fetch(`http://127.0.0.1:8000/note/delete/${id}/`, {
+        await fetch(`http://127.0.0.1:8000/api/note/delete/${id}/`, {
               method: 'DELETE'
         })
         if (allNotes !== undefined) {
@@ -16,7 +16,7 @@ export default function DeleteButton (props) {
         navigation()
     }
 
-    return (
-        <button name='delete' onClick={handleClick}>Delete</button>
+    return (        
+        <p name='delete' className="delete" onClick={handleClick}><b>Delete note</b></p>
     )
 }

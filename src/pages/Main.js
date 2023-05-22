@@ -9,7 +9,7 @@ export default function Main()
    const navigate = useNavigate()
 
    useEffect(() => {
-      fetch('http://127.0.0.1:8000/')
+      fetch('http://127.0.0.1:8000/api/')
          .then((response) => response.json())
          .then((data) => setNotes(data))
          .catch((err) => console.log(err.message));
@@ -19,16 +19,16 @@ export default function Main()
    var myNotes = notes.map(note => {
       return (
          <div key={note.id}  className='note'>
-            <div onClick={() => navigate(`/note/${note.id}/`)}>
+            <div className='single-note' onClick={() => navigate(`/update/${note.id}/`)}>
                <h2>{note.title}</h2>
                <p>{note.content}</p>
-            </div>            
-            <button onClick={() =>  navigate(`/update/${note.id}/`)}>Update</button>
+            </div>
             <DeleteButton 
-            id={note.id}
-            allNotes={notes}
-            removeNote={setNotes}
-            navigation={() => navigate('/')}/>
+               id={note.id}
+               allNotes={notes}
+               removeNote={setNotes}
+               navigation={() => navigate('/')}
+            />
          </div>
       )
    })

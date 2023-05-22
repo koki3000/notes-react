@@ -17,7 +17,7 @@ export default function Add() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        await fetch('http://127.0.0.1:8000/note/add/', {
+        await fetch('http://127.0.0.1:8000/api/note/add/', {
             method: 'POST',
             body: JSON.stringify({
                     title: note.title,

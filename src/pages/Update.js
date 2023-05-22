@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams  } from 'react-router-dom';
+import BackButton from '../components/BackButton'
 
 export default function Update({ route, navigation }) {
     const { id } = useParams()
@@ -7,7 +8,7 @@ export default function Update({ route, navigation }) {
     const navigate = useNavigate()
 
     useEffect( () => {
-        fetch(`http://127.0.0.1:8000/note/${id}/`)
+        fetch(`http://127.0.0.1:8000/api/note/${id}/`)
          .then((response) => response.json())
          .then((data) => setNote(data))
          .catch((err) => console.log(err.message));
@@ -23,7 +24,7 @@ export default function Update({ route, navigation }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        await fetch(`http://127.0.0.1:8000/note/update/${id}/`, {
+        await fetch(`http://127.0.0.1:8000/api/note/update/${id}/`, {
             method: 'PUT',
             body: JSON.stringify({
                 title: note.title,
@@ -38,30 +39,30 @@ export default function Update({ route, navigation }) {
 
     return (
         <div>
-            <h2> Update note </h2>
-                <form onSubmit={handleSubmit}> 
-                    <div>               
-                        <input
-                            className='note' 
-                            placeholder='Title'
-                            onChange={handleChange}
-                            name='title'
-                            value={note.title}>
-                        </input>
-                    </div>
-                    <div>
-                        <textarea
-                            className='note' 
-                            placeholder='Your note'
-                            onChange={handleChange}
-                            name='content'
-                            value={note.content}>
-                        </textarea>
-                    </div>
-                    <div>
-                        <button type='submit'> Update </button>
-                    </div>            
-                </form>
+            <BackButton
+                note={note}
+                navigation={() => navigate('/')}
+            />
+            <form onSubmit={handleSubmit}> 
+                <div>               
+                    <input
+                        className='note' 
+                        placeholder='Title'
+                        onChange={handleChange}
+                        name='title'
+                        value={note.title}>
+                    </input>
+                </div>
+                <div>
+                    <textarea
+                        className='note' 
+                        placeholder='Your note'
+                        onChange={handleChange}
+                        name='content'
+                        value={note.content}>
+                    </textarea>
+                </div>
+            </form>
         </div>
     )
 }
