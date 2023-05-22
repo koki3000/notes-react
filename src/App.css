@@ -20,6 +20,7 @@ h1 {
 }
 
 .note {
+  position: relative;
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -125,4 +126,18 @@ input.note:focus {
 
 textarea.note::-webkit-scrollbar {
   display: none;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+
+.single-note:hover {
+  cursor: pointer;
+}
+
+.delete:hover {
+  cursor: pointer;
 }
