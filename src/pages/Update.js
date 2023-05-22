@@ -37,25 +37,31 @@ export default function Update({ route, navigation }) {
     }
 
     return (
-        <div className='form-container'>
+        <div>
             <h2> Update note </h2>
-            <form onSubmit={handleSubmit}>                
-                <input                     
-                     placeholder='Title'
-                     onChange={handleChange}
-                     name='title'
-                     value={note.title}>
-                </input>
-                <textarea 
-                    placeholder='Your note'
-                    onChange={handleChange}
-                    name='content'
-                    value={note.content}>
-                </textarea>                
-                <div>
-                    <button type='submit'> Update </button>
-                </div>            
-            </form>
+                <form onSubmit={handleSubmit}> 
+                    <div>               
+                        <input
+                            className='note' 
+                            placeholder='Title'
+                            onChange={handleChange}
+                            name='title'
+                            value={note.title}>
+                        </input>
+                    </div>
+                    <div>
+                        <textarea
+                            className='note' 
+                            placeholder='Your note'
+                            onChange={handleChange}
+                            name='content'
+                            value={note.content}>
+                        </textarea>
+                    </div>
+                    <div>
+                        <button type='submit'> Update </button>
+                    </div>            
+                </form>
         </div>
     )
 }
