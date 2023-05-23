@@ -5,7 +5,7 @@ export default function DeleteButton (props) {
     async function handleClick(event) {
         event.preventDefault()
         if (note.content || note.title) {
-            await fetch(`http://127.0.0.1:8000/api/note/update/${id}/`, {
+            await fetch(`https://notes-production-a8a8.up.railway.app/api/note/update/${id}/`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     title: note.title,
@@ -17,7 +17,7 @@ export default function DeleteButton (props) {
             })
         } 
         else {
-            await fetch(`http://127.0.0.1:8000/api/note/delete/${id}/`, {
+            await fetch(`https://notes-production-a8a8.up.railway.app/api/note/delete/${id}/`, {
                 method: 'DELETE'
             })
         }

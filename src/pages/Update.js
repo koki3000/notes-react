@@ -8,7 +8,7 @@ export default function Update({ route, navigation }) {
     const navigate = useNavigate()
 
     useEffect( () => {
-        fetch(`http://127.0.0.1:8000/api/note/${id}/`)
+        fetch(`https://notes-production-a8a8.up.railway.app/api/note/${id}/`)
          .then((response) => response.json())
          .then((data) => setNote(data))
          .catch((err) => console.log(err.message));
@@ -24,7 +24,7 @@ export default function Update({ route, navigation }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        await fetch(`http://127.0.0.1:8000/api/note/update/${id}/`, {
+        await fetch(`https://notes-production-a8a8.up.railway.app/api/note/update/${id}/`, {
             method: 'PUT',
             body: JSON.stringify({
                 title: note.title,

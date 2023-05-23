@@ -9,7 +9,7 @@ export default function Main()
    const navigate = useNavigate()
 
    useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/')
+      fetch('https://notes-production-a8a8.up.railway.app/api/')
          .then((response) => response.json())
          .then((data) => setNotes(data))
          .catch((err) => console.log(err.message));
