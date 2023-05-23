@@ -28,10 +28,17 @@ h1 {
   border: 3px solid #13B7AE;
 }
 
+.note svg {
+  fill:#13B7AE;
+}
+
 .note:nth-child(even) {
   background-color: #13B7AE;
 }
 
+.note:nth-child(even) svg {
+  fill:white;
+}
 .note h2 {
   color: #13B7AE;
 }
@@ -73,14 +80,12 @@ h1 {
 .textfield {
   padding: 10px;
   border: none;
-  /* border-radius: 4px; */
   font-size: 14px;
   color: #333;
   width: 200px;
 }
 .title {
   font-size: 18px;
-  /* border-radius: 4px; */
 }
 
 .textfield:focus {
@@ -130,14 +135,24 @@ textarea.note::-webkit-scrollbar {
 
 .delete {
   position: absolute;
-  top: 0;
-  right: 5%;
+  top: 3px;
+  right: 3px;
 }
 
 .single-note:hover {
   cursor: pointer;
 }
 
-.delete:hover {
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons svg {
+  fill: #13B7AE;
+}
+
+.button:hover,
+.add-button:hover {
   cursor: pointer;
 }
