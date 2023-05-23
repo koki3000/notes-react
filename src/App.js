@@ -1,9 +1,7 @@
 import './App.css';
-import { HashRouter, Routes, Route } from "react-router-dom";
-import Main from './pages/Main';
-import Add from './pages/Add';
-import Update from './pages/Update';
-import Note from './pages/Note';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotesListPage from './pages/NotesListPage';
+import SingleNotePage from './pages/SingleNotePage';
 
 
 function App() {
@@ -11,14 +9,12 @@ function App() {
   return (
     <div className='container'>
       <h1>My Notes</h1>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />}/>
-          <Route path="/add" element={<Add />} />
-          <Route path="/update/:id/" element={<Update />} />
-          <Route path="/note/:id/" element={<Note />} />
+          <Route path="/" element={<NotesListPage />}/>
+          <Route path="/note/:id/" element={<SingleNotePage />} />
         </Routes>
-      </HashRouter>  
+      </BrowserRouter>  
     </div>
         
   );

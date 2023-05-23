@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeleteButton from '../components/DeleteButton';
+import { ReactComponent as Add } from '../assets/add.svg'
 
 
 export default function Main() 
@@ -19,25 +20,28 @@ export default function Main()
    var myNotes = notes.map(note => {
       return (
          <div key={note.id}  className='note'>
-            <div className='single-note' onClick={() => navigate(`/update/${note.id}/`)}>
+            <div className='single-note' onClick={() => navigate(`/note/${note.id}/`)}>
                <h2>{note.title}</h2>
                <p>{note.content}</p>
             </div>
-            <DeleteButton 
-               id={note.id}
-               allNotes={notes}
-               removeNote={setNotes}
-               navigation={() => navigate('/')}
-            />
+            <div className="delete">
+               <DeleteButton                 
+                  id={note.id}
+                  allNotes={notes}
+                  removeNote={setNotes}
+                  navigation={() => navigate('/')}
+               />
+            </div>            
          </div>
       )
    })
 
-    return (
-        <div>
-            {myNotes}
-            <button onClick={() => navigate('/add')}>Add note</button>
-        </div>
-        
-    )
+   return (
+      <div>
+         <Add className='add-button' onClick={() => navigate('/note/new/')} />
+         {myNotes}
+      </div>
+      
+   )
 }
+
