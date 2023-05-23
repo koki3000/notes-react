@@ -1,3 +1,5 @@
+import { ReactComponent as Delete } from '../assets/delete.svg'
+
 export default function DeleteButton (props) {
     const {id, allNotes, removeNote, navigation} = props
 
@@ -17,6 +19,6 @@ export default function DeleteButton (props) {
     }
 
     return (        
-        <p name='delete' className="delete" onClick={handleClick}><b>Delete note</b></p>
+        <Delete className='button' onClick={handleClick}/>
     )
 }
